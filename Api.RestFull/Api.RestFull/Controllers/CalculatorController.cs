@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Api.RestFull.Utils;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
 
 namespace Api.RestFull.Controllers
 {
@@ -11,12 +9,12 @@ namespace Api.RestFull.Controllers
     [ApiController]
     public class CalculatorController : ControllerBase
     {
-        [HttpGet("{firstNumber}/{secondNumber}")]
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            if(NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
+                var sum = NumberUtils.ConvertToDecimal(firstNumber) + NumberUtils.ConvertToDecimal(secondNumber);
 
                 return Ok(sum.ToString());
             }
@@ -24,15 +22,18 @@ namespace Api.RestFull.Controllers
             return BadRequest("Invalid Imput");
         }
 
-        private bool IsNumeric(string valor)
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
         {
-            int val;
-            return int.TryParse(valor, out val);
-        }
+            if (NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
+            {
+                var test = NumberUtils.ConvertToDecimal(secondNumber);
+                var sum = NumberUtils.ConvertToDecimal(firstNumber) * NumberUtils.ConvertToDecimal(secondNumber);
 
-        private decimal ConvertToDecimal(string valor)
-        {
-            return decimal.Parse(valor);
+                return Ok(sum.ToString());
+            }
+
+            return BadRequest("Invalid Imput");
         }
     }
 }
