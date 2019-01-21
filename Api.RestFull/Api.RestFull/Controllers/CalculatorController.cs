@@ -27,9 +27,9 @@ namespace Api.RestFull.Controllers
         {
             if (NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
             {
-                var sum = NumberUtils.ConvertToDecimal(firstNumber) + NumberUtils.ConvertToDecimal(secondNumber);
+                var substraction = NumberUtils.ConvertToDecimal(firstNumber) + NumberUtils.ConvertToDecimal(secondNumber);
 
-                return Ok(sum.ToString());
+                return Ok(substraction.ToString());
             }
 
             return BadRequest("Invalid Imput");
@@ -40,9 +40,9 @@ namespace Api.RestFull.Controllers
         {
             if (NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
             {
-                var sum = NumberUtils.ConvertToDecimal(firstNumber) * NumberUtils.ConvertToDecimal(secondNumber);
+                var multiplication = NumberUtils.ConvertToDecimal(firstNumber) * NumberUtils.ConvertToDecimal(secondNumber);
 
-                return Ok(sum.ToString());
+                return Ok(multiplication.ToString());
             }
 
             return BadRequest("Invalid Imput");
@@ -53,9 +53,9 @@ namespace Api.RestFull.Controllers
         {
             if (NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
             {
-                var sum = NumberUtils.ConvertToDecimal(firstNumber) / NumberUtils.ConvertToDecimal(secondNumber);
+                var division = NumberUtils.ConvertToDecimal(firstNumber) / NumberUtils.ConvertToDecimal(secondNumber);
 
-                return Ok(sum.ToString());
+                return Ok(division.ToString());
             }
 
             return BadRequest("Invalid Imput");
@@ -66,9 +66,9 @@ namespace Api.RestFull.Controllers
         {
             if (NumberUtils.IsNumeric(firstNumber) && NumberUtils.IsNumeric(secondNumber))
             {
-                var sum = (NumberUtils.ConvertToDecimal(firstNumber) + NumberUtils.ConvertToDecimal(secondNumber)) / 2;
+                var mean = (NumberUtils.ConvertToDecimal(firstNumber) + NumberUtils.ConvertToDecimal(secondNumber)) / 2;
 
-                return Ok(sum.ToString());
+                return Ok(mean.ToString());
             }
 
             return BadRequest("Invalid Imput");
