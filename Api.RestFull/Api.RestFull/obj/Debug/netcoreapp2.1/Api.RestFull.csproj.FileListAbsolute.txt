@@ -12,3 +12,17 @@ C:\Projetos\API.REST\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\
 C:\Projetos\API.REST\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.pdb
 C:\Projetos\API.REST\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.dll
 C:\Projetos\API.REST\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.pdb
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.deps.json
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.runtimeconfig.json
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.runtimeconfig.dev.json
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.dll
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.pdb
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csprojAssemblyReference.cache
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csproj.CoreCompileInputs.cache
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cache
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cs
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.AssemblyInfoInputs.cache
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.AssemblyInfo.cs
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorTargetAssemblyInfo.cache
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.dll
+C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.pdb
