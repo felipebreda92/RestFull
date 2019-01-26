@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Api.RestFull.Model;
+﻿using Api.RestFull.Model;
 using Api.RestFull.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.RestFull.Controllers
@@ -26,7 +21,7 @@ namespace Api.RestFull.Controllers
             return Ok(_personService.FindAll());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
             var person = _personService.FindById(id);
@@ -45,8 +40,24 @@ namespace Api.RestFull.Controllers
             {
                 return BadRequest();
             }
-
             return new ObjectResult(_personService.Create(person));
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] Person person)
+        {
+            if (person is null)
+            {
+                return BadRequest();
+            }
+            return new ObjectResult(_personService.Update(person));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            _personService.Delete(id);
+            return NoContent();
         }
     }
 }

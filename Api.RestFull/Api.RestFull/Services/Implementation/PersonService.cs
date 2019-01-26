@@ -34,9 +34,9 @@ namespace Api.RestFull.Services.Implementation
             return new Person()
             {
                 Id = IncrementAndGet(),
-                FirstName = "Person Name" + i,
-                LastName = "Person LastName" + i,
-                Address = "Person Address" + i,
+                FirstName = "Person Name" + id,
+                LastName = "Person LastName" + id,
+                Address = "Person Address" + id,
                 Gender = "Male"
             };
         }
