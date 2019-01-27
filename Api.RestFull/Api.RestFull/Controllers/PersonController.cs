@@ -22,7 +22,7 @@ namespace Api.RestFull.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(long id)
+        public IActionResult Get(int id)
         {
             var person = _personService.FindById(id);
             if(person is null)
@@ -54,9 +54,10 @@ namespace Api.RestFull.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(int id)
         {
-            _personService.Delete(id);
+            if (_personService.Delete(id))
+                return Ok(string.Format("Pessoa com o id {0}, foi deletada do banco de dados", id));
             return NoContent();
         }
     }

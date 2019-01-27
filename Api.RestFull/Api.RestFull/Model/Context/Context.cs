@@ -12,6 +12,6 @@ namespace Api.RestFull.Model.Context
 
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Person> Person { get; set; }
     }
 }
