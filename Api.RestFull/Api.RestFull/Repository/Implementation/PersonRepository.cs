@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Api.RestFull.Model;
+using Api.RestFull.Model.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Api.RestFull.Model;
-using Api.RestFull.Model.Context;
-using Microsoft.EntityFrameworkCore;
 
-namespace Api.RestFull.Services.Implementation
+namespace Api.RestFull.Repository.Implementation
 {
-    public class PersonService : IPersonServices
+    public class PersonRepository : IPersonRepository
     {
         private Context _context;
 
-        public PersonService(Context context)
+        public PersonRepository(Context context)
         {
             _context = context;
         }
@@ -63,7 +61,7 @@ namespace Api.RestFull.Services.Implementation
         public Person Update(Person person)
         {
             if (!Exist(person.Id))
-                return new Person();
+                return null;
 
             var result = _context.Person.SingleOrDefault(p => p.Id.Equals(person.Id));
             try
@@ -78,7 +76,7 @@ namespace Api.RestFull.Services.Implementation
             return person;
         }
 
-        private bool Exist(int? id)
+        public bool Exist(int? id)
         {
             return _context.Person.Any(p => p.Id.Equals(id));
         }

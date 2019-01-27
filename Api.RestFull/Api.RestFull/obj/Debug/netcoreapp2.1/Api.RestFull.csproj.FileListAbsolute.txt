@@ -17,7 +17,6 @@ C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestF
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.runtimeconfig.dev.json
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.dll
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.pdb
-C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csprojAssemblyReference.cache
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csproj.CoreCompileInputs.cache
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cache
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cs

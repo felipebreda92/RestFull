@@ -9,10 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Evolve" Version="1.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="SqlData.Core" Version="2.0.26" />
   </ItemGroup>
 
 </Project>
