@@ -1,5 +1,5 @@
 ﻿using Api.RestFull.Model;
-using Api.RestFull.Services;
+using Api.RestFull.Business;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.RestFull.Controllers
@@ -9,23 +9,23 @@ namespace Api.RestFull.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonController : ControllerBase
     {
-        private IPersonServices _personService;
+        private IPersonBusiness _personBusiness;
 
-        public PersonController(IPersonServices services)
+        public PersonController(IPersonBusiness services)
         {
-            _personService = services;
+            _personBusiness = services;
         }
         
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if(person is null)
             {
                 return NotFound();
@@ -41,23 +41,27 @@ namespace Api.RestFull.Controllers
             {
                 return BadRequest();
             }
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] Person person)
         {
             if (person is null)
-            {
                 return BadRequest();
-            }
-            return new ObjectResult(_personService.Update(person));
+
+            var updatedPerson = _personBusiness.Update(person);
+
+            if (!(updatedPerson is null))
+                return NoContent();
+
+            return new OkObjectResult(person);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_personService.Delete(id))
+            if (_personBusiness.Delete(id))
                 return Ok(string.Format("Pessoa com o id {0}, foi deletada do banco de dados", id));
             return NoContent();
         }
