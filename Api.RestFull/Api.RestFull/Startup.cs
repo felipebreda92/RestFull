@@ -27,8 +27,14 @@ namespace Api.RestFull
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //Api Version
+            services.AddApiVersioning();
+
             //Dependency Injection
             services.AddScoped<IPersonServices, PersonService>();
+
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

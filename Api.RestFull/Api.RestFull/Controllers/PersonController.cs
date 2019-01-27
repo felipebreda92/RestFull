@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.RestFull.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonController : ControllerBase
     {
         private IPersonServices _personService;
