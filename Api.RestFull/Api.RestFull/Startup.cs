@@ -1,8 +1,10 @@
-﻿using Api.RestFull.Services;
+﻿using Api.RestFull.Model.Context;
+using Api.RestFull.Services;
 using Api.RestFull.Services.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,9 +22,12 @@ namespace Api.RestFull
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Connection Configuration
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration["SqlConnection:SqlConnectionString"]));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //DependencyInjection
+            //Dependency Injection
             services.AddScoped<IPersonServices, PersonService>();
         }
 

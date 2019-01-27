@@ -6,9 +6,9 @@ namespace Api.RestFull.Services
     public interface IPersonServices
     {
         Person Create(Person person);
-        Person FindById(long id);
+        Person FindById(int id);
         List<Person> FindAll();
         Person Update(Person person);
-        void Delete(long Id);
+        bool Delete(int id);
     }
 }
