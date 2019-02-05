@@ -1,7 +1,7 @@
 {
-    "Evolve.Driver": "SqlClient",
-    "Evolve.ConnectionString": "Server=.;Database=rest_with_asp_net_udemy;User Id=sa;Password=alice@2016;Trusted_Connection=False",
-    "Evolve.Locations": "db",
-    "Evolve.Command": "migrate",
-    "Evolve.Placeholder.table4": "table_4"
+  "Evolve.Driver": "SqlClient",
+  "Evolve.ConnectionString": "Server=NOTEBOOK_BREDA\\FELIPE17;Database=rest_with_asp_net_udemy;Integrated Security = true",
+  "Evolve.Locations": "db",
+  "Evolve.Command": "migrate",
+  "Evolve.Placeholder.table4": "table_4"
 }

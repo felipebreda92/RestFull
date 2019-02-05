@@ -25,3 +25,17 @@ C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestF
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorTargetAssemblyInfo.cache
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.dll
 C:\Projetos\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.pdb
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.deps.json
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.runtimeconfig.json
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.runtimeconfig.dev.json
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.dll
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\bin\Debug\netcoreapp2.1\Api.RestFull.pdb
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csprojAssemblyReference.cache
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.csproj.CoreCompileInputs.cache
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cache
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorAssemblyInfo.cs
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.AssemblyInfoInputs.cache
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.AssemblyInfo.cs
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.RazorTargetAssemblyInfo.cache
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.dll
+C:\Projetos\Udemy\NetCore\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.1\Api.RestFull.pdb
