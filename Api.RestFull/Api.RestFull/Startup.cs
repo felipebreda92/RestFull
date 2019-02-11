@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using Api.RestFull.Repository.Generic;
 
 namespace Api.RestFull
 {
@@ -64,6 +65,10 @@ namespace Api.RestFull
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusiness>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IBookBusiness, BookBusiness>();
+
+            //Generic repository dependency injection
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
