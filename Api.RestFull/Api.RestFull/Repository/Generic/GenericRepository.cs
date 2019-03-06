@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.RestFull.Repository.Generic
 {
@@ -39,7 +38,7 @@ namespace Api.RestFull.Repository.Generic
             var result = dataset.SingleOrDefault(p => p.Id.Equals(id));
             try
             {
-                if (!(result is null))
+                if (result != null)
                     dataset.Remove(result);
 
                 _context.SaveChanges();
@@ -49,7 +48,7 @@ namespace Api.RestFull.Repository.Generic
                 throw ex;
             }
 
-            return !(result is null);
+            return result != null;
         }
 
         public bool Exist(long? id)

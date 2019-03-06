@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Api.RestFull.Business;
-using Api.RestFull.Model;
-using Microsoft.AspNetCore.Http;
+﻿using Api.RestFull.Business;
+using Api.RestFull.Data.VO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.RestFull.Controllers
@@ -21,6 +16,10 @@ namespace Api.RestFull.Controllers
             _bookBusiness = bookBusiness;
         }
 
+        /// <summary>
+        /// Metodo Get - Obtém todos os registros do banco de dados.
+        /// </summary>
+        /// <returns>List<Book></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -28,11 +27,16 @@ namespace Api.RestFull.Controllers
 
         }
 
+        /// <summary>
+        /// Metodo Get - Obtém um único registro no banco de dados baseado no id informado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var Book = _bookBusiness.FindById(id);
-            if (Book is null)
+            if (Book == null)
             {
                 return NotFound();
             }
@@ -40,30 +44,45 @@ namespace Api.RestFull.Controllers
             return Ok(Book);
         }
 
+        /// <summary>
+        /// Metodo Post - Insere os Registros no bando dados.
+        /// </summary>
+        /// <param name="Book"></param>
+        /// <returns>Objeto inserido</returns>
         [HttpPost]
-        public IActionResult Post([FromBody] Book Book)
+        public IActionResult Post([FromBody] BookVO Book)
         {
-            if (Book is null)
+            if (Book == null)
             {
                 return BadRequest();
             }
             return new ObjectResult(_bookBusiness.Create(Book));
         }
 
+        /// <summary>
+        /// Metodo Put - Altera os registros no banco de dados de acordo com os dados informados.
+        /// </summary>
+        /// <param name="Book"></param>
+        /// <returns>Objeto alterado</returns>
         [HttpPut]
-        public IActionResult Put([FromBody] Book Book)
+        public IActionResult Put([FromBody] BookVO Book)
         {
-            if (Book is null)
+            if (Book == null)
                 return BadRequest();
 
             var updatedBook = _bookBusiness.Update(Book);
 
-            if (!(updatedBook is null))
+            if (updatedBook == null)
                 return NoContent();
 
             return new OkObjectResult(Book);
         }
 
+        /// <summary>
+        /// Metodo Delete - Deleta o registro do banco de dados de acordo com o id informado.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status de resposta</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

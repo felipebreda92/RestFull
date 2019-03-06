@@ -1,4 +1,5 @@
-﻿using Api.RestFull.Model;
+﻿using Api.RestFull.Data.VO;
+using Api.RestFull.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Api.RestFull.Business
 {
     public interface IBookBusiness
     {
-        Book Create(Book book);
-        Book FindById(int id);
-        List<Book> FindAll();
-        Book Update(Book book);
+        BookVO Create(BookVO book);
+        BookVO FindById(int id);
+        List<BookVO> FindAll();
+        BookVO Update(BookVO book);
         bool Delete(int id);
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Api.RestFull.Data.Converter;
 using Api.RestFull.Data.VO;
 using Api.RestFull.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.RestFull.Data.Converters
 {

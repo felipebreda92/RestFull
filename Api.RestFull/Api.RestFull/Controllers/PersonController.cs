@@ -15,18 +15,27 @@ namespace Api.RestFull.Controllers
         {
             _personBusiness = services;
         }
-        
+
+        /// <summary>
+        /// Metodo Get - Obtém todos os registros do banco de dados.
+        /// </summary>
+        /// <returns>List<Person></returns>
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
         }
 
+        /// <summary>
+        /// Metodo Get - Obtém um único registro no banco de dados baseado no id informado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var person = _personBusiness.FindById(id);
-            if(person is null)
+            if(person == null)
             {
                 return NotFound();
             }
@@ -34,30 +43,45 @@ namespace Api.RestFull.Controllers
             return Ok(person);
         }
 
+        /// <summary>
+        /// Metodo Post - Insere os Registros no bando dados.
+        /// </summary>
+        /// <param name="Book"></param>
+        /// <returns>Objeto inserido</returns>
         [HttpPost]
         public IActionResult Post([FromBody] PersonVO person)
         {
-            if (person is null)
+            if (person == null)
             {
                 return BadRequest();
             }
             return new ObjectResult(_personBusiness.Create(person));
         }
 
+        /// <summary>
+        /// Metodo Put - Altera os registros no banco de dados de acordo com os dados informados.
+        /// </summary>
+        /// <param name="Book"></param>
+        /// <returns>Objeto alterado</returns>
         [HttpPut]
         public IActionResult Put([FromBody] PersonVO person)
         {
-            if (person is null)
+            if (person == null)
                 return BadRequest();
 
             var updatedPerson = _personBusiness.Update(person);
 
-            if (!(updatedPerson is null))
+            if (updatedPerson == null)
                 return NoContent();
 
             return new OkObjectResult(person);
         }
 
+        /// <summary>
+        /// Metodo Delete - Deleta o registro do banco de dados de acordo com o id informado.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status de resposta</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

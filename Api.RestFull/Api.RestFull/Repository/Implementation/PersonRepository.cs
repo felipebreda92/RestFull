@@ -35,7 +35,7 @@ namespace Api.RestFull.Repository.Implementation
 
             try
             {
-                if (!(result is null))
+                if (result != null)
                     _context.Person.Remove(result);
 
                 _context.SaveChanges();
@@ -45,7 +45,7 @@ namespace Api.RestFull.Repository.Implementation
                 throw ex;
             }
 
-            return !(result is null);
+            return result != null;
         }
 
         public List<Person> FindAll()

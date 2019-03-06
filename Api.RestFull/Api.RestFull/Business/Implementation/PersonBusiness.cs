@@ -31,6 +31,8 @@ namespace Api.RestFull.Business.Implementation
 
         public List<PersonVO> FindAll()
         {
+            var persons = _repository.FindAll();
+
             return _converter.ParseList(_repository.FindAll());
         }
 
