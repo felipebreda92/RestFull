@@ -1,6 +1,6 @@
-﻿using Api.RestFull.Model;
-using Api.RestFull.Business;
+﻿using Api.RestFull.Business;
 using Microsoft.AspNetCore.Mvc;
+using Api.RestFull.Data.Converter;
 
 namespace Api.RestFull.Controllers
 {
@@ -35,7 +35,7 @@ namespace Api.RestFull.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person is null)
             {
@@ -45,7 +45,7 @@ namespace Api.RestFull.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person is null)
                 return BadRequest();

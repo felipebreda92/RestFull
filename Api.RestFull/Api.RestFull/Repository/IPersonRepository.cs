@@ -1,4 +1,5 @@
-﻿using Api.RestFull.Model;
+﻿using Api.RestFull.Data.Converter;
+using Api.RestFull.Model;
 using System.Collections.Generic;
 
 namespace Api.RestFull.Repository
@@ -10,7 +11,7 @@ namespace Api.RestFull.Repository
         List<Person> FindAll();
         Person Update(Person person);
         bool Delete(int id);
-        bool Exist(int? id);
+        bool Exist(long? id);
 
     }
 }

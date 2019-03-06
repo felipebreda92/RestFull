@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using Api.RestFull.Data.Converter;
+using Api.RestFull.Data.Converters;
 using Api.RestFull.Model;
-using Api.RestFull.Model.Context;
-using Api.RestFull.Repository;
-using Microsoft.EntityFrameworkCore;
+using Api.RestFull.Repository.Generic;
+using System.Collections.Generic;
 
 namespace Api.RestFull.Business.Implementation
 {
     public class PersonBusiness : IPersonBusiness
     {
-        private IPersonRepository _repository;
+        private IRepository<Person> _repository;
+        private readonly PersonConverter _converter;
 
-        public PersonBusiness(IPersonRepository repository)
+        public PersonBusiness(IRepository<Person> repository)
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-            return _repository.Create(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public bool Delete(int id)
@@ -28,19 +29,21 @@ namespace Api.RestFull.Business.Implementation
             return _repository.Delete(id);
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _repository.FindAll();
+            return _converter.ParseList(_repository.FindAll());
         }
 
-        public Person FindById(int id)
+        public PersonVO FindById(int id)
         {
-            return _repository.FindById(id);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-            return _repository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
     }
 }

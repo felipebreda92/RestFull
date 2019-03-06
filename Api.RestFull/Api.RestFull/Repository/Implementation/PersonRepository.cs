@@ -76,7 +76,7 @@ namespace Api.RestFull.Repository.Implementation
             return person;
         }
 
-        public bool Exist(int? id)
+        public bool Exist(long? id)
         {
             return _context.Person.Any(p => p.Id.Equals(id));
         }

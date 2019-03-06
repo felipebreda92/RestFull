@@ -1,9 +1,8 @@
-﻿using Api.RestFull.Model.Base;
-
-namespace Api.RestFull.Model
+﻿namespace Api.RestFull.Data.Converter
 {
-    public class Person : BaseEntity
+    public class PersonVO
     {
+        public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
