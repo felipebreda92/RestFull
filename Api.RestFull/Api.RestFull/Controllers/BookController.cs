@@ -24,7 +24,6 @@ namespace Api.RestFull.Controllers
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
-
         }
 
         /// <summary>
