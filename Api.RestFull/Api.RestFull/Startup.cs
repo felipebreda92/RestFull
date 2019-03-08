@@ -1,19 +1,25 @@
-﻿using Api.RestFull.Model.Context;
-using Api.RestFull.Business;
+﻿using Api.RestFull.Business;
 using Api.RestFull.Business.Implementation;
+using Api.RestFull.HyperMedia;
+using Api.RestFull.Model.Context;
+using Api.RestFull.Repository;
+using Api.RestFull.Repository.Generic;
+using Api.RestFull.Repository.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Api.RestFull.Repository;
-using Api.RestFull.Repository.Implementation;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
-using System.Data.SqlClient;
 using System.Collections.Generic;
-using Api.RestFull.Repository.Generic;
+using System.Data.SqlClient;
+using Tapioca.HATEOAS;
+using WebApiContrib.Core.Formatter.Csv;
 
 namespace Api.RestFull
 {
@@ -57,10 +63,36 @@ namespace Api.RestFull
                 }
             }
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var csvFormatterOptions = new CsvFormatterOptions();
+            csvFormatterOptions.CsvDelimiter = ";";
+
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+                options.OutputFormatters.Add(new CsvOutputFormatter(csvFormatterOptions));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("csv", MediaTypeHeaderValue.Parse("text/csv"));
+
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddXmlSerializerFormatters();
+
+            var filterOption = new HyperMediaFilterOptions();
+            filterOption.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+
+            services.AddSingleton(filterOption);
 
             //Api Version
             services.AddApiVersioning();
+
+            services.AddSwaggerGen(config => {
+                config.SwaggerDoc("v1",
+                    new Info {
+                        Title = "RestFull API With .Net Core 2.1",
+                        Version = "v1"
+                    });
+            });
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusiness>();
@@ -84,7 +116,23 @@ namespace Api.RestFull
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(config => {
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
+
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                        name: "DefaultApi",
+                        template: "{controller=Value}/{id}"
+                    );
+            });
         }
     }
 }

@@ -1,0 +1,6 @@
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.csprojAssemblyReference.cache
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.csproj.CoreCompileInputs.cache
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.RazorAssemblyInfo.cache
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.RazorAssemblyInfo.cs
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.AssemblyInfoInputs.cache
+C:\Breda\RestFull\Api.RestFull\Api.RestFull\obj\Debug\netcoreapp2.2\Api.RestFull.AssemblyInfo.cs
