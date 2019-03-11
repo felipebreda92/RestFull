@@ -1,6 +1,7 @@
 ﻿using Api.RestFull.Business;
 using Api.RestFull.Data.VO;
 using Microsoft.AspNetCore.Mvc;
+using Tapioca.HATEOAS;
 
 namespace Api.RestFull.Controllers
 {
@@ -21,6 +22,7 @@ namespace Api.RestFull.Controllers
         /// </summary>
         /// <returns>List<Book></returns>
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
@@ -33,6 +35,7 @@ namespace Api.RestFull.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
             var Book = _bookBusiness.FindById(id);
@@ -50,6 +53,7 @@ namespace Api.RestFull.Controllers
         /// <param name="Book"></param>
         /// <returns>Objeto inserido</returns>
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] BookVO Book)
         {
             if (Book == null)
@@ -65,6 +69,7 @@ namespace Api.RestFull.Controllers
         /// <param name="Book"></param>
         /// <returns>Objeto alterado</returns>
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] BookVO Book)
         {
             if (Book == null)
@@ -84,6 +89,7 @@ namespace Api.RestFull.Controllers
         /// <param name="id"></param>
         /// <returns>Status de resposta</returns>
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             if (_bookBusiness.Delete(id))

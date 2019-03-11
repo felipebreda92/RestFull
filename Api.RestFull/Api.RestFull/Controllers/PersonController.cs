@@ -5,6 +5,7 @@ using Tapioca.HATEOAS;
 
 namespace Api.RestFull.Controllers
 {
+
     [ApiVersion("1")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
@@ -21,8 +22,9 @@ namespace Api.RestFull.Controllers
         /// Metodo Get - Obtém todos os registros do banco de dados.
         /// </summary>
         /// <returns>List<Person></returns>
-        [TypeFilter(typeof(HyperMediaFilter))]    
+        
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
@@ -33,8 +35,9 @@ namespace Api.RestFull.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [TypeFilter(typeof(HyperMediaFilter))]
+        
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
             var person = _personBusiness.FindById(id);
@@ -51,8 +54,9 @@ namespace Api.RestFull.Controllers
         /// </summary>
         /// <param name="Book"></param>
         /// <returns>Objeto inserido</returns>
-        [TypeFilter(typeof(HyperMediaFilter))]
+        
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null)
@@ -67,8 +71,9 @@ namespace Api.RestFull.Controllers
         /// </summary>
         /// <param name="Book"></param>
         /// <returns>Objeto alterado</returns>
-        [TypeFilter(typeof(HyperMediaFilter))]
+        
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null)
@@ -87,8 +92,9 @@ namespace Api.RestFull.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status de resposta</returns>
-        [TypeFilter(typeof(HyperMediaFilter))]
+        
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             if (_personBusiness.Delete(id))

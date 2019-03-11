@@ -80,6 +80,7 @@ namespace Api.RestFull
 
             var filterOption = new HyperMediaFilterOptions();
             filterOption.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            filterOption.ObjectContentResponseEnricherList.Add(new BookEnricher());
 
             services.AddSingleton(filterOption);
 
@@ -96,7 +97,7 @@ namespace Api.RestFull
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusiness>();
-            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookBusiness, BookBusiness>();
 
             //Generic repository dependency injection
