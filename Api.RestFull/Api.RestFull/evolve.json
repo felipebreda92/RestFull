@@ -1,6 +1,6 @@
 {
   "Evolve.Driver": "SqlClient",
-  "Evolve.ConnectionString": "Server=JJMAC7429;Database=rest_with_asp_net_udemy;Integrated Security = true",
+  "Evolve.ConnectionString": "Server=tcp:felipebreda.database.windows.net,1433;Initial Catalog=Estudo;Persist Security Info=False;User ID=felipe.breda;Password=qqh9Z2YVuxJpfN;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
   "Evolve.Locations": "db",
   "Evolve.Command": "migrate",
   "Evolve.Placeholder.table4": "table_4"

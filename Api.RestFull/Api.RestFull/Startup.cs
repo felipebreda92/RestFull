@@ -5,6 +5,9 @@ using Api.RestFull.Model.Context;
 using Api.RestFull.Repository;
 using Api.RestFull.Repository.Generic;
 using Api.RestFull.Repository.Implementation;
+using Api.RestFull.Security.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -42,26 +46,52 @@ namespace Api.RestFull
             //Connection Configuration
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration["SqlConnection:SqlConnectionString"]));
 
-            if (_environment.IsDevelopment())
+            ExecutarEvolve();
+
+            SigninConfigurations signinConfigurations = new SigninConfigurations();
+            services.AddSingleton(signinConfigurations);
+            TokenConfigurations tokenConfigurations = new TokenConfigurations();
+
+            new ConfigureFromConfigurationOptions<TokenConfigurations>(
+                    Configuration.GetSection("TokenConfigurations")
+                ).Configure(tokenConfigurations);
+
+            services.AddSingleton(tokenConfigurations);
+
+
+
+            services.AddAuthentication(authOptions =>
             {
-                try
-                {
-                    var evolveConnection = new SqlConnection(Configuration["SqlConnection:SqlConnectionString"]);
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-                    var evolve = new Evolve.Evolve("evolve.json", evolveConnection, msg => _logger.LogInformation(msg))
-                    {
-                        Locations = new List<string> { "db/migrations" },
-                        IsEraseDisabled = true
-                    };
+            }).AddJwtBearer(barerOption =>
+            {
+                var parmsValidation = barerOption.TokenValidationParameters;
+                parmsValidation.IssuerSigningKey = signinConfigurations.Key;
+                parmsValidation.ValidAudience = tokenConfigurations.Audience;
+                parmsValidation.ValidIssuer = tokenConfigurations.Issuer;
 
-                    evolve.Migrate();
-                }
-                catch(Exception ex)
-                {
-                    _logger.LogCritical("Database migration failed", ex);
-                    throw;
-                }
-            }
+                //Validate the signing of a received token
+                parmsValidation.ValidateIssuerSigningKey = true;
+
+                //validade if a received token is still valid
+                parmsValidation.ValidateLifetime = true;
+
+                /*Tolerance time for expiration of a token (used in case
+                 * of ime synchronization problems between differents computers
+                 * in the communication process)
+                */
+                parmsValidation.ClockSkew = TimeSpan.Zero;
+
+            });
+
+            services.AddAuthorization(auth => 
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
 
             var csvFormatterOptions = new CsvFormatterOptions();
             csvFormatterOptions.CsvDelimiter = ";";
@@ -87,9 +117,11 @@ namespace Api.RestFull
             //Api Version
             services.AddApiVersioning();
 
-            services.AddSwaggerGen(config => {
+            services.AddSwaggerGen(config =>
+            {
                 config.SwaggerDoc("v1",
-                    new Info {
+                    new Info
+                    {
                         Title = "RestFull API With .Net Core 2.1",
                         Version = "v1"
                     });
@@ -99,9 +131,35 @@ namespace Api.RestFull
             services.AddScoped<IPersonBusiness, PersonBusiness>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookBusiness, BookBusiness>();
+            services.AddScoped<ILoginBusiness, LoginBusiness>();
 
             //Generic repository dependency injection
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+        }
+
+        private void ExecutarEvolve()
+        {
+            if (_environment.IsDevelopment())
+            {
+                try
+                {
+                    var evolveConnection = new SqlConnection(Configuration["SqlConnection:SqlConnectionString"]);
+
+                    var evolve = new Evolve.Evolve("evolve.json", evolveConnection, msg => _logger.LogInformation(msg))
+                    {
+                        Locations = new List<string> { "db/migrations" },
+                        IsEraseDisabled = true
+                    };
+
+                    evolve.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogCritical("Database migration failed", ex);
+                    throw;
+                }
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

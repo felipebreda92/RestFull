@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Api.RestFull.Data.Converter;
 using Tapioca.HATEOAS;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.RestFull.Controllers
 {
 
+    [Authorize("Bearer")]
     [ApiVersion("1")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

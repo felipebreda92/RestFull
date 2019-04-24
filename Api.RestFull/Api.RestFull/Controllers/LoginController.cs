@@ -26,7 +26,7 @@ namespace Api.RestFull.Controllers
         
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Post([FromBody] User user)
+        public object Post([FromBody] User user)
         {
             if (user == null)
             {

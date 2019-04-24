@@ -1,4 +1,4 @@
-USE [rest_with_asp_net_udemy]
+USE [Estudo]
 GO
 
 /****** Object:  Table [dbo].[person]    Script Date: 27/01/2019 17:50:45 ******/

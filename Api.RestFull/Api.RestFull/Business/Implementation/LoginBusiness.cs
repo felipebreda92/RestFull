@@ -25,7 +25,7 @@ namespace Api.RestFull.Business.Implementation
         {
             bool credetialsIsValid = false;
 
-            if (user != null && string.IsNullOrWhiteSpace(user.Login))
+            if (user != null && !string.IsNullOrWhiteSpace(user.Login))
             {
                 var baseUser = _repository.FindByLogin(user.Login);
                 credetialsIsValid = (baseUser != null && user.Login == baseUser.Login && user.AccessKey == baseUser.AccessKey);
@@ -37,26 +37,45 @@ namespace Api.RestFull.Business.Implementation
                             new[]
                             {
                                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                                new Claim(JwtRegisteredClaimNames.UniqueName, Guid.NewGuid().ToString(user.Login)),
+                                new Claim(JwtRegisteredClaimNames.UniqueName, user.Login),
                             }
                         );
+                    DateTime createDate = DateTime.Now;
+                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfigurations.Seconds);
 
+                    JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                    string token = CreateToken(identity, createDate, expirationDate, handler);
                     return SuccessObject(createDate, expirationDate, token);
                 }
                 else
                 {
                     return ExceptionObject();
                 }
-
-
             }
+            return null;
+        }
+
+        private string CreateToken(ClaimsIdentity identity, DateTime createDate, DateTime expirationDate, JwtSecurityTokenHandler handler)
+        {
+            var securityToken = handler.CreateToken(new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
+            {
+                Issuer = _tokenConfigurations.Issuer,
+                Audience = _tokenConfigurations.Audience,
+                SigningCredentials = _signinConfigurations.SigningCredentials,
+                Subject = identity,
+                NotBefore = createDate,
+                Expires = expirationDate
+            });
+
+            var token = handler.WriteToken(securityToken);
+            return token; 
         }
 
         private object ExceptionObject()
         {
             return new
             {
-                authenticated = false,                
+                authenticated = false,
                 message = "Autentcaçao falhou"
 
             };

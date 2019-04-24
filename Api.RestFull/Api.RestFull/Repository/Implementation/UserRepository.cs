@@ -15,7 +15,7 @@ namespace Api.RestFull.Repository.Implementation
 
         public User FindByLogin(string login)
         {
-            return _context.User.SingleOrDefault(u => u.Login.Equals(login));
+            return _context.Users.SingleOrDefault(u => u.Login.Equals(login));
         }
     }
 }

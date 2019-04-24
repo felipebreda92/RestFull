@@ -10,7 +10,7 @@ namespace Api.RestFull.Security.Configuration
 
         public SigninConfigurations()
         {
-            using (var provider = new RSACryptoServiceProvider(20148))
+            using (var provider = new RSACryptoServiceProvider(2048))
             {
                 Key = new RsaSecurityKey(provider.ExportParameters(true));
             }
