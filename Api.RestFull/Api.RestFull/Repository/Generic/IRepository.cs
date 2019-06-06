@@ -14,5 +14,7 @@ namespace Api.RestFull.Repository.Generic
         T Update(T item);
         bool Delete(int id);
         bool Exist(long? id);
+        List<T> FindWithPagedSearch(string query);
+        int CountPagedSearch(string query);
     }
 }

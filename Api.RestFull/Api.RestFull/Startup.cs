@@ -136,6 +136,7 @@ namespace Api.RestFull
             //Generic repository dependency injection
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
 
         private void ExecutarEvolve()

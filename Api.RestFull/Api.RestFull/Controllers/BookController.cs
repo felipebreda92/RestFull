@@ -1,10 +1,12 @@
 ﻿using Api.RestFull.Business;
 using Api.RestFull.Data.VO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tapioca.HATEOAS;
 
 namespace Api.RestFull.Controllers
 {
+    [Authorize("Bearer")]
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]

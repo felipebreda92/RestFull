@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Api.RestFull.Controllers
 {
-
     [Authorize("Bearer")]
     [ApiVersion("1")]
     [ApiController]
@@ -32,12 +31,26 @@ namespace Api.RestFull.Controllers
             return Ok(_personBusiness.FindAll());
         }
 
+        [HttpGet("findbyname")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetByname([FromQuery] string firstname, [FromQuery] string lastname)
+        {
+            return Ok(_personBusiness.FindByName(firstname, lastname));
+        }
+
+        [HttpGet("pagedsearch/{sortDirection}/{pageSize}/{page}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetPeagedSearch([FromQuery] string name, string sortDirection, int pageSize, int page)
+        {
+            return new OkObjectResult(_personBusiness.FindWithPagedSearch(name, sortDirection, pageSize, page));
+        }
+
         /// <summary>
         /// Metodo Get - Obtém um único registro no banco de dados baseado no id informado
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        
+
         [HttpGet("{id}")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
